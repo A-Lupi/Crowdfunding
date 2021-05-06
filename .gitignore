@@ -1,0 +1,8 @@
+# Ignore all text files
+*.txt
+
+# Ignore gem file
+.RandomAdventure-1.0.0.gem
+
+#Ignore test csv file
+.lotr_heroes.csv
