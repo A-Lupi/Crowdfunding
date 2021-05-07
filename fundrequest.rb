@@ -75,12 +75,12 @@ class Fund_request
 
   def high_score_entry(project)
     formatted_name = project.name.ljust(20, '.')
-    "#{formatted_name} #{project.total_funds}"
+    "#{formatted_name} $#{project.total_funds}/$#{project.goal}"
   end
 
-  def save_high_scores(to_file="high_scores.txt")
+  def save_high_scores(to_file="projects_funding.txt")
     File.open(to_file, "w") do |file|
-      file.puts "#{@title} High Scores:"
+      file.puts "#{@title} that need funding:"
       @projects.sort_by {|project| -project.total_funds}.each do |project|
         file.puts high_score_entry(project)
       end
