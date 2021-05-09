@@ -1,3 +1,4 @@
+require_relative 'spec_helper'
 require_relative 'grant_project'
 
 describe GrantProject do
