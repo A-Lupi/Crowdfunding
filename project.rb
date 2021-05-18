@@ -1,8 +1,10 @@
 require_relative 'pledge_trove'
+require_relative 'fundable'
 
 class Project
-  attr_accessor :name
-  attr_reader :funding, :goal
+  include Fundable 
+  
+  attr_accessor :name, :funding, :goal
 
   def initialize(name, goal, funding=0)
     @name = name
@@ -19,20 +21,6 @@ class Project
     @goal - @funding
   end
 
-  def add_fund
-    @funding += 25
-    puts "Project #{@name} got some funds!"
-  end
-
-  def remove_fund
-    @funding -= 15
-    puts "Project #{@name} lost some funds!"
-  end
-
-  def fully_funded?
-    @funding == @goal
-  end
-
   def received_pledge(pledge)
     @received_pledges[pledge.category] += pledge.value
     puts "Project #{@name} received a #{pledge.category} pledge worth $#{pledge.value}."
@@ -41,10 +29,6 @@ class Project
 
   def pledges
     @received_pledges.values.reduce(0, :+)
-  end
-
-  def total_funds
-    @funding + pledges
   end
 
   def each_received_pledge
