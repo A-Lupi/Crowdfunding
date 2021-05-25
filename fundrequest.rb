@@ -14,7 +14,8 @@ class Fund_request
   end
 
   def week(times)
-    puts "There are #{@projects.size} projects avaible:"
+    puts "There are #{@projects.size} projects avaible that you could fund:"
+
     @projects.each do |project|
       puts project
     end
@@ -36,6 +37,14 @@ class Fund_request
 
   def print_name_goal(project)
     puts "#{project.name} #{project.total_funds}/#{project.goal}"
+  end
+
+  def fully_funded_projects
+    @projects.select { |project| project.fully_funded? }
+  end
+
+  def under_funded_projects
+    @projects.reject { |project| project.fully_funded? }
   end
 
   def print_stats
